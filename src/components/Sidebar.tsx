@@ -7,15 +7,18 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
+      {/* Mobile Menu Button */}
       <div className="md:hidden bg-gray-800 text-white p-4">
         <button onClick={() => setIsOpen(!isOpen)} className="focus:outline-none">
           <FiMenu size={24} />
         </button>
       </div>
+
+      {/* Sidebar */}
       <div
         className={`fixed inset-y-0 left-0 transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } md:translate-x-0 transition-transform duration-200 ease-in-out w-64 bg-gray-800 text-white md:relative`}
+        } md:translate-x-0 transition-transform duration-200 ease-in-out w-64 bg-gray-800 text-white md:relative z-20`}
       >
         <div className="p-4">
           <h2 className="text-xl font-bold">Sidebar</h2>
@@ -29,7 +32,14 @@ const Sidebar: React.FC = () => {
           </nav>
         </div>
       </div>
-      {isOpen && <div className="fixed inset-0 bg-black opacity-50 md:hidden" onClick={() => setIsOpen(false)}></div>}
+
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 md:hidden z-10"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
     </>
   );
 };
